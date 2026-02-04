@@ -1,6 +1,6 @@
 # 🧧 Sui Red Envelope - Lì Xì On-chain
 
-Một dApp cho phép người dùng tạo và gửi lì xì SUI coin trên blockchain Sui.
+Một App cho phép người dùng tạo và gửi lì xì SUI coin trên blockchain Sui.
 
 ## 📖 Cách sử dụng
 
