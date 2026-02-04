@@ -2,68 +2,6 @@
 
 Một dApp cho phép người dùng tạo và gửi lì xì SUI coin trên blockchain Sui.
 
-## 📁 Cấu trúc dự án
-
-```
-SuiHackathon2026/
-├── contracts/
-│   └── red_envelope/
-│       ├── Move.toml
-│       └── sources/
-│           └── red_envelope.move
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── Header/
-    │   │   ├── CreateEnvelope/
-    │   │   └── ClaimEnvelope/
-    │   ├── config/
-    │   │   ├── constants.ts
-    │   │   └── SuiProviders.tsx
-    │   ├── App.tsx
-    │   └── main.tsx
-    └── package.json
-```
-
-## 🚀 Hướng dẫn Deploy
-
-### 1. Deploy Smart Contract
-
-```bash
-# Di chuyển vào thư mục contract
-cd contracts/red_envelope
-
-# Build contract
-sui move build
-
-# Deploy lên testnet (đảm bảo đã có SUI testnet trong ví)
-sui client publish --gas-budget 100000000
-```
-
-**Quan trọng:** Sau khi deploy, copy **Package ID** từ output và cập nhật vào file `frontend/src/config/constants.ts`:
-
-```typescript
-export const CONSTANTS = {
-  PACKAGE_ID: "0xYOUR_ACTUAL_PACKAGE_ID_HERE",
-  // ...
-};
-```
-
-### 2. Chạy Frontend
-
-```bash
-# Di chuyển vào thư mục frontend
-cd frontend
-
-# Cài đặt dependencies (đã cài sẵn)
-npm install
-
-# Chạy development server
-npm run dev
-```
-
-Truy cập http://localhost:5173
-
 ## 📖 Cách sử dụng
 
 ### Tạo Lì Xì
