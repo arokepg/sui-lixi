@@ -7,6 +7,11 @@
   z-index: 100;
 }
 
+html.dark .header {
+  background: linear-gradient(135deg, #7a2410 0%, #a82020 50%, #8b3030 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
 .header-content {
   max-width: 1200px;
   margin: 0 auto;

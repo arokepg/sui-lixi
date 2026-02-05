@@ -3,12 +3,13 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  min-height: calc(100vh - 80px);
-  background: linear-gradient(180deg, #fff5f5 0%, #ffe4e4 50%, #ffffff 100%);
+  height: calc(100vh - 4rem);
+  overflow: hidden;
+  position: relative;
 }
 
 .claim-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
   box-shadow: 0 20px 60px rgba(212, 56, 13, 0.2);
   padding: 2.5rem;
@@ -17,6 +18,13 @@
   text-align: center;
   border: 3px solid #ffd6d6;
   transition: transform 0.5s ease;
+  backdrop-filter: blur(10px);
+}
+
+html.dark .claim-card {
+  background: rgba(30, 20, 20, 0.95);
+  border-color: #8b2020;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .claim-card.opening {
@@ -37,6 +45,10 @@
   gap: 1rem;
 }
 
+html.dark .loading-card p {
+  color: #ffd6d6;
+}
+
 .loading-spinner {
   width: 50px;
   height: 50px;
@@ -44,6 +56,11 @@
   border-top-color: #d4380d;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+html.dark .loading-spinner {
+  border-color: #5a2020;
+  border-top-color: #ff6b6b;
 }
 
 @keyframes spin {
@@ -54,6 +71,11 @@
 .error-card {
   background: #fff2f0;
   border-color: #ffccc7;
+}
+
+html.dark .error-card {
+  background: rgba(50, 20, 20, 0.95);
+  border-color: #8b3030;
 }
 
 .error-icon {
@@ -67,9 +89,17 @@
   margin: 0 0 1rem 0;
 }
 
+html.dark .error-card h2 {
+  color: #ff8a8a;
+}
+
 .error-card p {
   color: #a8071a;
   margin-bottom: 1.5rem;
+}
+
+html.dark .error-card p {
+  color: #ffb3b3;
 }
 
 .back-button {
@@ -93,6 +123,11 @@
   border-color: #b7eb8f;
   position: relative;
   overflow: hidden;
+}
+
+html.dark .success-card {
+  background: linear-gradient(135deg, #2d2010 0%, #2d2d10 50%, #102d10 100%);
+  border-color: #3d6b2f;
 }
 
 .confetti {
@@ -127,10 +162,18 @@
   font-size: 2rem;
 }
 
+html.dark .success-card h2 {
+  color: #7deb4f;
+}
+
 .claimed-amount {
   font-size: 1.25rem;
   color: #333;
   margin-bottom: 0.5rem;
+}
+
+html.dark .claimed-amount {
+  color: #e0e0e0;
 }
 
 .claimed-amount strong {
@@ -138,10 +181,18 @@
   font-size: 1.5rem;
 }
 
+html.dark .claimed-amount strong {
+  color: #ff8a8a;
+}
+
 .sender-info {
   color: #666;
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
+}
+
+html.dark .sender-info {
+  color: #aaa;
 }
 
 .celebration-actions {
@@ -188,6 +239,10 @@
   font-size: 1.5rem;
 }
 
+html.dark .envelope-preview h2 {
+  color: #ff8a8a;
+}
+
 /* Envelope Details */
 .envelope-details {
   background: #fafafa;
@@ -195,6 +250,10 @@
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   text-align: left;
+}
+
+html.dark .envelope-details {
+  background: rgba(40, 30, 30, 0.8);
 }
 
 .detail-row {
@@ -213,14 +272,26 @@
   font-size: 0.9rem;
 }
 
+html.dark .detail-label {
+  color: #aaa;
+}
+
 .detail-value {
   font-weight: 600;
   color: #333;
 }
 
+html.dark .detail-value {
+  color: #e0e0e0;
+}
+
 .detail-value.amount {
   color: #d4380d;
   font-size: 1.25rem;
+}
+
+html.dark .detail-value.amount {
+  color: #ff8a8a;
 }
 
 .message-box {
@@ -229,11 +300,19 @@
   border-top: 1px dashed #e8e8e8;
 }
 
+html.dark .message-box {
+  border-top-color: #4a3a3a;
+}
+
 .message-label {
   display: block;
   color: #666;
   font-size: 0.85rem;
   margin-bottom: 0.5rem;
+}
+
+html.dark .message-label {
+  color: #aaa;
 }
 
 .message-content {
@@ -246,6 +325,12 @@
   border-left: 4px solid #ffc53d;
 }
 
+html.dark .message-content {
+  background: rgba(45, 35, 15, 0.8);
+  color: #ffd280;
+  border-left-color: #b8860b;
+}
+
 /* Connect Prompt */
 .connect-prompt {
   background: #fffbe6;
@@ -255,9 +340,18 @@
   margin-bottom: 1rem;
 }
 
+html.dark .connect-prompt {
+  background: rgba(45, 40, 15, 0.8);
+  border-color: #8b7300;
+}
+
 .connect-prompt p {
   color: #ad6800;
   margin: 0;
+}
+
+html.dark .connect-prompt p {
+  color: #ffd280;
 }
 
 /* Error Message */
@@ -269,6 +363,12 @@
   border-radius: 8px;
   font-size: 0.9rem;
   margin-bottom: 1rem;
+}
+
+html.dark .error-message {
+  background: rgba(50, 20, 20, 0.8);
+  border-color: #8b3030;
+  color: #ff8a8a;
 }
 
 /* Claim Button */

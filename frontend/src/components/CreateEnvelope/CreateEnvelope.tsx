@@ -8,9 +8,87 @@ import { Transaction } from '@mysten/sui/transactions';
 import { CONSTANTS, suiToMist } from '../../config';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Gift, Copy, Check, Loader2, ExternalLink, AlertCircle } from 'lucide-react';
+import { Copy, Check, Loader2, ExternalLink, AlertCircle } from 'lucide-react';
 import { cn, copyToClipboard, formatSuiAmount } from '../../lib/utils';
 import confetti from 'canvas-confetti';
+
+/**
+ * Red Envelope Icon Component
+ */
+function RedEnvelopeIcon({ className, size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' | 'xl' }) {
+  const sizeClasses = {
+    sm: 'text-xl',
+    md: 'text-3xl',
+    lg: 'text-5xl',
+    xl: 'text-7xl'
+  };
+  return (
+    <span className={cn(sizeClasses[size], className)} role="img" aria-label="red envelope">
+      🧧
+    </span>
+  );
+}
+
+/**
+ * Floating decoration component for Tet theme
+ */
+function TetDecorations() {
+  // Pre-generate random positions for cherry blossoms
+  const blossoms = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    startX: Math.random() * 100,
+    endX: Math.random() * 100,
+    duration: 6 + Math.random() * 6,
+    delay: Math.random() * 8,
+    size: Math.random() > 0.5 ? 'text-2xl' : 'text-xl',
+  }));
+
+  return (
+    <>
+      {/* Cherry blossoms falling across the screen */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {blossoms.map((blossom) => (
+          <motion.span
+            key={blossom.id}
+            className={`absolute ${blossom.size} opacity-70`}
+            style={{ left: `${blossom.startX}%` }}
+            initial={{ y: -30, rotate: 0, opacity: 0 }}
+            animate={{ 
+              y: ['0vh', '100vh'],
+              rotate: [0, 360],
+              x: [0, (blossom.endX - blossom.startX) * 2],
+              opacity: [0, 0.7, 0.7, 0]
+            }}
+            transition={{ 
+              duration: blossom.duration, 
+              repeat: Infinity, 
+              delay: blossom.delay,
+              ease: 'linear',
+              times: [0, 0.1, 0.9, 1]
+            }}
+          >
+            🌸
+          </motion.span>
+        ))}
+      </div>
+      {/* Lanterns */}
+      <motion.span 
+        className="absolute top-20 left-8 text-3xl z-20"
+        animate={{ rotate: [-5, 5, -5] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
+        🏮
+      </motion.span>
+      <motion.span 
+        className="absolute top-20 right-8 text-3xl z-20"
+        animate={{ rotate: [5, -5, 5] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
+        🏮
+      </motion.span>
+    </>
+  );
+}
 
 /**
  * Component tạo lì xì mới
@@ -155,41 +233,48 @@ export function CreateEnvelope() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 bg-gradient-to-br from-red-primary-50 via-gold-50 to-red-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="h-[calc(100vh-4rem)] flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Tet Decorations */}
+      <TetDecorations />
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-lg"
+        className="w-full max-w-lg relative z-10"
       >
-        <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+        <div className="bg-white dark:bg-gray-900/95 rounded-3xl shadow-2xl border-2 border-red-primary-200 dark:border-red-primary-800 overflow-hidden backdrop-blur-sm">
           {/* Header */}
-          <div className="bg-gradient-to-r from-red-primary-500 to-red-primary-600 p-8 text-white text-center relative overflow-hidden">
+          <div className="bg-gradient-to-r from-red-primary-500 via-red-primary-600 to-red-primary-500 dark:from-red-primary-700 dark:via-red-primary-600 dark:to-red-primary-700 p-8 text-white text-center relative overflow-hidden">
             <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
+              animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="inline-block mb-4"
             >
-              <Gift className="w-16 h-16" />
+              <RedEnvelopeIcon size="xl" />
             </motion.div>
             <h2 className="text-3xl font-bold mb-2">{t('create.title')}</h2>
             <p className="text-red-primary-100">{t('create.subtitle')}</p>
             
             {/* Decorative elements */}
+            <div className="absolute top-2 left-2 text-2xl opacity-80">🏮</div>
+            <div className="absolute top-2 right-2 text-2xl opacity-80">🏮</div>
+            <div className="absolute bottom-2 left-4 text-xl opacity-60">🌸</div>
+            <div className="absolute bottom-2 right-4 text-xl opacity-60">🌸</div>
             <div className="absolute top-4 left-4 w-16 h-16 bg-gold-400/20 rounded-full blur-xl" />
             <div className="absolute bottom-4 right-4 w-20 h-20 bg-red-primary-400/20 rounded-full blur-xl" />
           </div>
 
           {/* Content */}
-          <div className="p-8">
+          <div className="p-8 bg-white dark:bg-gray-900">
             {!account ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center py-8"
               >
-                <AlertCircle className="w-12 h-12 mx-auto mb-4 text-gold-500" />
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <AlertCircle className="w-12 h-12 mx-auto mb-4 text-gold-500 dark:text-gold-400" />
+                <p className="text-gray-700 dark:text-gray-300 text-lg">
                   {t('error.walletNotConnected')}
                 </p>
               </motion.div>
@@ -203,7 +288,7 @@ export function CreateEnvelope() {
                 <div>
                   <label 
                     htmlFor="amount" 
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2"
                   >
                     {t('create.amount')}
                   </label>
@@ -218,14 +303,15 @@ export function CreateEnvelope() {
                       onChange={(e) => setAmount(e.target.value)}
                       disabled={isPending}
                       className={cn(
-                        "w-full px-4 py-3 pr-16 rounded-xl border-2 bg-white dark:bg-gray-800",
+                        "w-full px-4 py-3 pr-16 rounded-xl border-2",
+                        "bg-gray-50 dark:bg-gray-800",
                         "text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500",
                         "focus:outline-none focus:ring-2 focus:ring-red-primary-500 focus:border-transparent",
                         "transition-all disabled:opacity-50 disabled:cursor-not-allowed",
-                        error && !isPending ? "border-red-500" : "border-gray-200 dark:border-gray-700"
+                        error && !isPending ? "border-red-500" : "border-gray-300 dark:border-gray-700"
                       )}
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 dark:text-gray-400">
                       SUI
                     </span>
                   </div>
@@ -235,7 +321,7 @@ export function CreateEnvelope() {
                 <div>
                   <label 
                     htmlFor="message" 
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2"
                   >
                     {t('create.message')}
                   </label>
@@ -247,11 +333,12 @@ export function CreateEnvelope() {
                     disabled={isPending}
                     rows={3}
                     className={cn(
-                      "w-full px-4 py-3 rounded-xl border-2 bg-white dark:bg-gray-800",
+                      "w-full px-4 py-3 rounded-xl border-2",
+                      "bg-gray-50 dark:bg-gray-800",
                       "text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500",
                       "focus:outline-none focus:ring-2 focus:ring-red-primary-500 focus:border-transparent",
                       "transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed",
-                      "border-gray-200 dark:border-gray-700"
+                      "border-gray-300 dark:border-gray-700"
                     )}
                   />
                 </div>
@@ -277,9 +364,12 @@ export function CreateEnvelope() {
                     "flex items-center justify-center gap-2",
                     "disabled:opacity-50 disabled:cursor-not-allowed",
                     "bg-gradient-to-r from-red-primary-500 to-red-primary-600",
+                    "dark:from-red-primary-600 dark:to-red-primary-700",
                     "hover:from-red-primary-600 hover:to-red-primary-700",
+                    "dark:hover:from-red-primary-500 dark:hover:to-red-primary-600",
                     "text-white shadow-lg hover:shadow-xl",
-                    "transform hover:scale-[1.02] active:scale-[0.98]"
+                    "transform hover:scale-[1.02] active:scale-[0.98]",
+                    "border-2 border-red-primary-400 dark:border-red-primary-500"
                   )}
                 >
                   {isPending ? (
@@ -289,7 +379,7 @@ export function CreateEnvelope() {
                     </>
                   ) : (
                     <>
-                      <Gift className="w-5 h-5" />
+                      <RedEnvelopeIcon size="sm" />
                       {t('create.button')}
                     </>
                   )}

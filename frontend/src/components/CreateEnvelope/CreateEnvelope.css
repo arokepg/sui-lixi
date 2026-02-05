@@ -2,18 +2,25 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
-  min-height: calc(100vh - 80px);
-  background: linear-gradient(180deg, #fff5f5 0%, #ffffff 100%);
+  height: calc(100vh - 4rem);
+  overflow: hidden;
 }
 
 .envelope-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
   box-shadow: 0 10px 40px rgba(212, 56, 13, 0.15);
   padding: 2rem;
   width: 100%;
   max-width: 480px;
   border: 2px solid #ffd6d6;
+  backdrop-filter: blur(10px);
+}
+
+html.dark .envelope-card {
+  background: rgba(30, 20, 20, 0.95);
+  border-color: #8b2020;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .envelope-header {
@@ -39,9 +46,17 @@
   margin: 0;
 }
 
+html.dark .envelope-header h2 {
+  color: #ff8a8a;
+}
+
 .envelope-header p {
   color: #666;
   margin-top: 0.5rem;
+}
+
+html.dark .envelope-header p {
+  color: #aaa;
 }
 
 .connect-prompt {
@@ -52,9 +67,18 @@
   border: 1px solid #ffe58f;
 }
 
+html.dark .connect-prompt {
+  background: rgba(45, 40, 15, 0.8);
+  border-color: #8b7300;
+}
+
 .connect-prompt p {
   color: #ad6800;
   margin: 0;
+}
+
+html.dark .connect-prompt p {
+  color: #ffd280;
 }
 
 .envelope-form {
@@ -75,6 +99,10 @@
   font-size: 0.9rem;
 }
 
+html.dark .form-group label {
+  color: #e0e0e0;
+}
+
 .input-wrapper {
   position: relative;
   display: flex;
@@ -90,6 +118,15 @@
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
+  background: white;
+  color: #333;
+}
+
+html.dark .form-group input[type="number"],
+html.dark .form-group textarea {
+  background: rgba(40, 30, 30, 0.8);
+  border-color: #5a3030;
+  color: #e0e0e0;
 }
 
 .form-group input[type="number"]:focus,
@@ -99,11 +136,21 @@
   box-shadow: 0 0 0 3px rgba(212, 56, 13, 0.1);
 }
 
+html.dark .form-group input[type="number"]:focus,
+html.dark .form-group textarea:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
 .input-suffix {
   position: absolute;
   right: 1rem;
   color: #999;
   font-weight: 500;
+}
+
+html.dark .input-suffix {
+  color: #aaa;
 }
 
 .form-group textarea {
@@ -118,6 +165,12 @@
   padding: 1rem;
   border-radius: 8px;
   font-size: 0.9rem;
+}
+
+html.dark .error-message {
+  background: rgba(50, 20, 20, 0.8);
+  border-color: #8b3030;
+  color: #ff8a8a;
 }
 
 .create-button {
@@ -166,6 +219,10 @@
   border-top: 2px dashed #ffd6d6;
 }
 
+html.dark .success-section {
+  border-top-color: #5a3030;
+}
+
 .success-header {
   display: flex;
   align-items: center;
@@ -182,12 +239,21 @@
   margin: 0;
 }
 
+html.dark .success-header h3 {
+  color: #7deb4f;
+}
+
 .envelope-info {
   background: #f6ffed;
   border: 1px solid #b7eb8f;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1.5rem;
+}
+
+html.dark .envelope-info {
+  background: rgba(20, 40, 20, 0.8);
+  border-color: #3d6b2f;
 }
 
 .info-row {
@@ -207,6 +273,10 @@
   font-weight: 500;
 }
 
+html.dark .info-label {
+  color: #aaa;
+}
+
 .info-value {
   background: #e6f7e6;
   padding: 0.5rem;
@@ -216,10 +286,19 @@
   color: #333;
 }
 
+html.dark .info-value {
+  background: rgba(30, 50, 30, 0.8);
+  color: #b8e6b8;
+}
+
 .tx-link {
   color: #1890ff;
   text-decoration: none;
   font-size: 0.85rem;
+}
+
+html.dark .tx-link {
+  color: #69b1ff;
 }
 
 .tx-link:hover {
@@ -233,10 +312,19 @@
   padding: 1rem;
 }
 
+html.dark .share-section {
+  background: rgba(45, 35, 15, 0.8);
+  border-color: #8b6b00;
+}
+
 .share-section p {
   margin: 0 0 0.75rem 0;
   color: #ad6800;
   font-weight: 500;
+}
+
+html.dark .share-section p {
+  color: #ffd280;
 }
 
 .share-link-box {
@@ -251,6 +339,13 @@
   border-radius: 8px;
   font-size: 0.8rem;
   background: white;
+  color: #333;
+}
+
+html.dark .share-link-input {
+  background: rgba(40, 35, 20, 0.8);
+  border-color: #8b6b00;
+  color: #e0e0e0;
 }
 
 .copy-button {

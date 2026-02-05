@@ -1,17 +1,29 @@
 /* App Container */
 .app {
-  min-height: 100vh;
-  background: #fafafa;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+html.dark .app {
+  background: transparent;
 }
 
 .main-content {
-  min-height: calc(100vh - 80px);
+  flex: 1;
+  overflow: hidden;
 }
 
 /* Global Link Styles */
 a {
   color: #d4380d;
   text-decoration: none;
+}
+
+html.dark a {
+  color: #ff8a8a;
 }
 
 a:hover {
@@ -29,4 +41,9 @@ button {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
+}
+
+html.dark .card {
+  background: #1e1e2e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }

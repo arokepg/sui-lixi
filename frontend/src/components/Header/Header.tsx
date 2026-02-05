@@ -1,10 +1,21 @@
 import { ConnectButton, useCurrentAccount } from '@mysten/dapp-kit';
 import { Link } from 'react-router-dom';
-import { Settings, Gift } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SettingsModal from '../SettingsModal';
 import { formatSuiAddress } from '../../lib/utils';
+
+/**
+ * Red Envelope Icon Component
+ */
+function RedEnvelopeIcon({ className }: { className?: string }) {
+  return (
+    <span className={className} role="img" aria-label="red envelope">
+      🧧
+    </span>
+  );
+}
 
 /**
  * Header component với logo, wallet info, và settings
@@ -16,15 +27,15 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg">
+      <header className="sticky top-0 z-40 w-full border-b border-red-primary-200 dark:border-red-primary-900/50 bg-gradient-to-r from-red-primary-600/95 to-red-primary-500/95 dark:from-red-primary-900/95 dark:to-red-primary-800/95 backdrop-blur-lg shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link 
               to="/" 
-              className="flex items-center gap-2 text-xl font-bold text-red-primary-600 dark:text-red-primary-400 hover:text-red-primary-700 dark:hover:text-red-primary-300 transition-colors group"
+              className="flex items-center gap-2 text-xl font-bold text-white hover:text-gold-200 transition-colors group"
             >
-              <Gift className="w-6 h-6 group-hover:animate-shake" />
+              <RedEnvelopeIcon className="text-2xl group-hover:animate-shake" />
               <span className="hidden sm:inline">{t('header.title')}</span>
               <span className="sm:hidden">🧧</span>
             </Link>
@@ -33,9 +44,9 @@ export function Header() {
             <div className="flex items-center gap-3">
               {/* Wallet Address Display */}
               {account && (
-                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-mono text-gray-700 dark:text-gray-300">
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white/20 dark:bg-black/20 rounded-lg border border-white/30 dark:border-white/10">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  <span className="text-sm font-mono text-white/90">
                     {formatSuiAddress(account.address)}
                   </span>
                 </div>
@@ -44,7 +55,7 @@ export function Header() {
               {/* Settings Button */}
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                className="p-2 rounded-lg hover:bg-white/20 dark:hover:bg-white/10 text-white/80 hover:text-white transition-colors"
                 aria-label={t('header.settings')}
               >
                 <Settings className="w-5 h-5" />
