@@ -251,7 +251,7 @@ export function CreateEnvelope() {
           </div>
 
           {/* Content */}
-          <div className="p-8 bg-white dark:bg-gray-900">
+          <div className="p-8 bg-white dark:bg-gray-900 max-h-[calc(100vh-20rem)] overflow-y-auto scrollbar-hide">
             {!account ? (
               <motion.div
                 initial={{ opacity: 0 }}
