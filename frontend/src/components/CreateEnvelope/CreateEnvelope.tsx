@@ -409,33 +409,34 @@ export function CreateEnvelope() {
 
                 {/* Share Link */}
                 <div className="mt-4">
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <p className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-3">
                     {t('create.shareTitle')}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <input
                       type="text"
                       value={getShareLink()}
                       readOnly
-                      className="flex-1 px-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 font-mono"
+                      className="flex-1 px-4 py-3 text-sm bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-gray-100 font-mono"
                     />
                     <button
                       onClick={handleCopyLink}
                       className={cn(
-                        "px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2",
+                        "px-6 py-3 rounded-lg font-bold text-base transition-all flex items-center gap-2 shadow-lg",
+                        "transform hover:scale-105 active:scale-95",
                         copied
-                          ? "bg-green-500 text-white"
-                          : "bg-gold-500 hover:bg-gold-600 text-gray-900"
+                          ? "bg-green-500 hover:bg-green-600 text-white"
+                          : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-2 border-red-400"
                       )}
                     >
                       {copied ? (
                         <>
-                          <Check className="w-4 h-4" />
+                          <Check className="w-5 h-5" />
                           {t('create.linkCopied')}
                         </>
                       ) : (
                         <>
-                          <Copy className="w-4 h-4" />
+                          <Copy className="w-5 h-5" />
                           {t('create.copyLink')}
                         </>
                       )}
