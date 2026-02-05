@@ -11,81 +11,66 @@ import { motion } from 'framer-motion';
 import { Copy, Check, Loader2, ExternalLink, AlertCircle } from 'lucide-react';
 import { cn, copyToClipboard, formatSuiAmount } from '../../lib/utils';
 import confetti from 'canvas-confetti';
+import { LixiIcon } from '../LixiIcon';
 
 /**
- * Red Envelope Icon Component
+ * Red Envelope Icon Component - Now using Vietnamese Lixi SVG
  */
 function RedEnvelopeIcon({ className, size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' | 'xl' }) {
-  const sizeClasses = {
-    sm: 'text-xl',
-    md: 'text-3xl',
-    lg: 'text-5xl',
-    xl: 'text-7xl'
-  };
   return (
-    <span className={cn(sizeClasses[size], className)} role="img" aria-label="red envelope">
-      🧧
-    </span>
+    <LixiIcon className={className} size={size} text="TÀI" />
   );
 }
 
 /**
  * Floating decoration component for Tet theme
+ * Optimized for better performance
  */
 function TetDecorations() {
-  // Pre-generate random positions for cherry blossoms
-  const blossoms = Array.from({ length: 12 }, (_, i) => ({
+  // Reduce number of blossoms and use simpler animations
+  const blossoms = Array.from({ length: 6 }, (_, i) => ({
     id: i,
     startX: Math.random() * 100,
     endX: Math.random() * 100,
-    duration: 6 + Math.random() * 6,
-    delay: Math.random() * 8,
+    duration: 8 + Math.random() * 4,
+    delay: Math.random() * 6,
     size: Math.random() > 0.5 ? 'text-2xl' : 'text-xl',
   }));
 
   return (
     <>
-      {/* Cherry blossoms falling across the screen */}
+      {/* Cherry blossoms falling across the screen - optimized */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {blossoms.map((blossom) => (
           <motion.span
             key={blossom.id}
-            className={`absolute ${blossom.size} opacity-70`}
-            style={{ left: `${blossom.startX}%` }}
-            initial={{ y: -30, rotate: 0, opacity: 0 }}
+            className={`absolute ${blossom.size} opacity-60`}
+            style={{ left: `${blossom.startX}%`, top: '-30px' }}
             animate={{ 
-              y: ['0vh', '100vh'],
-              rotate: [0, 360],
-              x: [0, (blossom.endX - blossom.startX) * 2],
-              opacity: [0, 0.7, 0.7, 0]
+              y: ['0vh', '110vh'],
+              rotate: [0, 180],
+              x: [(blossom.endX - blossom.startX) * -1, (blossom.endX - blossom.startX) * 1],
+              opacity: [0, 0.6, 0.6, 0]
             }}
             transition={{ 
               duration: blossom.duration, 
               repeat: Infinity, 
               delay: blossom.delay,
               ease: 'linear',
-              times: [0, 0.1, 0.9, 1]
+              times: [0, 0.1, 0.85, 1]
             }}
           >
             🌸
           </motion.span>
         ))}
       </div>
-      {/* Lanterns */}
-      <motion.span 
-        className="absolute top-20 left-8 text-3xl z-20"
-        animate={{ rotate: [-5, 5, -5] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
+      {/* Lanterns - static for better performance */}
+      <div className="absolute top-20 left-8 text-3xl z-20 animate-[swing_3s_ease-in-out_infinite]">
         🏮
-      </motion.span>
-      <motion.span 
-        className="absolute top-20 right-8 text-3xl z-20"
-        animate={{ rotate: [5, -5, 5] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
+      </div>
+      <div className="absolute top-20 right-8 text-3xl z-20 animate-[swing_3s_ease-in-out_infinite_0.5s]">
         🏮
-      </motion.span>
+      </div>
     </>
   );
 }

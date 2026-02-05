@@ -3,6 +3,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
+import { LixiIcon } from './LixiIcon';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -55,7 +56,9 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 "text-2xl font-bold flex items-center gap-2",
                 theme === 'light' ? "text-gray-900" : "text-red-primary-200"
               )}>
-                <span>🧧</span>
+                <span className="inline-flex items-center">
+                  <LixiIcon size={32} text="TÀI" />
+                </span>
                 {t('settings.title')}
               </h2>
               <button

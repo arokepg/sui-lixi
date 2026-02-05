@@ -5,14 +5,15 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SettingsModal from '../SettingsModal';
 import { formatSuiAddress } from '../../lib/utils';
+import { LixiIcon } from '../LixiIcon';
 
 /**
- * Red Envelope Icon Component
+ * Red Envelope Icon Component - Now using Vietnamese Lixi SVG
  */
 function RedEnvelopeIcon({ className }: { className?: string }) {
   return (
-    <span className={className} role="img" aria-label="red envelope">
-      🧧
+    <span className={className} role="img" aria-label="lì xì">
+      <LixiIcon size={32} text="TÀI" />
     </span>
   );
 }
@@ -35,9 +36,9 @@ export function Header() {
               to="/" 
               className="flex items-center gap-2 text-xl font-bold text-white hover:text-gold-200 transition-colors group"
             >
-              <RedEnvelopeIcon className="text-2xl group-hover:animate-shake" />
+              <RedEnvelopeIcon className="group-hover:animate-shake" />
               <span className="hidden sm:inline">{t('header.title')}</span>
-              <span className="sm:hidden">🧧</span>
+              <span className="sm:hidden">Lì Xì</span>
             </Link>
 
             {/* Right Section */}

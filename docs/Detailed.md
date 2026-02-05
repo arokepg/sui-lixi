@@ -571,20 +571,6 @@ We welcome all contributions! Please:
 
 ---
 
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details
-
----
-
-## 👥 Team
-
-- **Developer**: [Your Name]
-- **Designer**: [Designer Name]
-- **Smart Contract**: [Developer Name]
-
----
-
 ## 🙏 Acknowledgments
 
 **Tiếng Việt:**
@@ -600,22 +586,3 @@ MIT License - see [LICENSE](LICENSE) file for details
 - All users who tested and provided feedback
 
 ---
-
-## 📞 Contact
-
-- **Website**: [https://sui-lixi.vercel.app](https://sui-lixi.vercel.app)
-- **Twitter**: [@SuiLixi](https://twitter.com/suilixi)
-- **Discord**: [Sui Lixi Community](https://discord.gg/suilixi)
-- **Email**: contact@suilixi.xyz
-
----
-
-## 🌟 Star History
-
-If you find this project useful, please consider giving it a ⭐️!
-
----
-
-**Made with ❤️ and 🧧 for the Sui Community**
-
-*Chúc mừng năm mới! 新年快乐! Happy Lunar New Year!* 🎊

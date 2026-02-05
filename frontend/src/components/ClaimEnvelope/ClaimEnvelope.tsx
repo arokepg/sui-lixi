@@ -12,6 +12,7 @@ import { Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import confetti from 'canvas-confetti';
 import { useTranslation } from 'react-i18next';
+import { LixiIcon } from '../LixiIcon';
 
 interface EnvelopeData {
   objectId: string;
@@ -239,9 +240,9 @@ export function ClaimEnvelope() {
             initial={{ scale: 0 }}
             animate={{ scale: [0, 1.2, 1] }}
             transition={{ duration: 0.5 }}
-            className="text-7xl mb-4"
+            className="mb-4 flex justify-center"
           >
-            🧧
+            <LixiIcon size="xl" text="TÀI" />
           </motion.div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('claim.success')}</h2>
           <p className="text-xl font-semibold text-green-700 dark:text-green-300 mb-2">
@@ -280,9 +281,9 @@ export function ClaimEnvelope() {
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-7xl mb-4"
+              className="mb-4 flex justify-center"
             >
-              🧧
+              <LixiIcon size="xl" text="TÀI" />
             </motion.div>
             <h2 className="text-3xl font-bold mb-2">{t('claim.youHaveEnvelope')}</h2>
             <p className="text-red-100">{t('claim.openToReceive')}</p>

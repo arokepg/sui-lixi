@@ -46,6 +46,11 @@ label {
 }
 
 /* Tet Holiday Decorations */
+@keyframes swing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
 .tet-lantern {
   animation: sway 3s ease-in-out infinite;
 }
