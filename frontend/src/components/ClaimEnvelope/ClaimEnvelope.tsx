@@ -8,7 +8,7 @@ import {
 import { Transaction } from '@mysten/sui/transactions';
 import { CONSTANTS, mistToSui } from '../../config';
 import { motion } from 'framer-motion';
-import { Loader2, AlertCircle, ExternalLink, ArrowLeft } from 'lucide-react';
+import { Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import confetti from 'canvas-confetti';
 import { useTranslation } from 'react-i18next';
