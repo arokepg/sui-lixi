@@ -49,6 +49,8 @@ const resources = {
       "claim.errorTitle": "Oops!",
       "claim.loadingError": "Error loading envelope. It may have been claimed already.",
       "claim.idNotFound": "Envelope ID not found in URL",
+      "claim.noGas": "You need some SUI in your wallet to pay for gas fees. Please get some SUI first!",
+      "claim.checkingGas": "Checking wallet...",
       
       // Settings Modal
       "settings.title": "Settings",
@@ -121,6 +123,8 @@ const resources = {
       "claim.errorTitle": "Oops!",
       "claim.loadingError": "Lỗi khi tải thông tin lì xì. Có thể lì xì đã được mở.",
       "claim.idNotFound": "Không tìm thấy ID lì xì trong URL",
+      "claim.noGas": "Bạn cần có SUI trong ví để trả phí gas. Hãy nạp SUI trước nhé!",
+      "claim.checkingGas": "Đang kiểm tra ví...",
       
       // Settings Modal
       "settings.title": "Cài đặt",

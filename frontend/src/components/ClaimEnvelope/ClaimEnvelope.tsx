@@ -122,6 +122,28 @@ export function ClaimEnvelope() {
     setIsOpening(true);
 
     try {
+      // Kiểm tra xem user có gas không
+      const coins = await suiClient.getCoins({
+        owner: account.address,
+        coinType: '0x2::sui::SUI',
+      });
+
+      if (!coins.data || coins.data.length === 0) {
+        setError(t('claim.noGas'));
+        setIsOpening(false);
+        return;
+      }
+
+      // Kiểm tra tổng số dư (cần ít nhất 0.01 SUI cho gas)
+      const totalBalance = coins.data.reduce((sum, coin) => sum + BigInt(coin.balance), BigInt(0));
+      const minGasRequired = BigInt(10_000_000); // 0.01 SUI in MIST
+      
+      if (totalBalance < minGasRequired) {
+        setError(t('claim.noGas'));
+        setIsOpening(false);
+        return;
+      }
+
       // Tạo Transaction Block
       const tx = new Transaction();
 
@@ -152,7 +174,13 @@ export function ClaimEnvelope() {
           },
           onError: (err) => {
             console.error('Claim failed:', err);
-            setError(`${t('claim.error')}: ${err.message}`);
+            // Check for common gas-related errors
+            const errorMsg = err.message.toLowerCase();
+            if (errorMsg.includes('gas') || errorMsg.includes('coin') || errorMsg.includes('balance')) {
+              setError(t('claim.noGas'));
+            } else {
+              setError(`${t('claim.error')}: ${err.message}`);
+            }
             setIsOpening(false);
           },
         }
